@@ -1,8 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRouter from './routes/users.js';
+import authRouter from './routes/auth.js';
+
+dotenv.config();
 
 const app = express();
 
+//middlewares
 app.use(express.json());
 
 const connect = async () => {
@@ -23,8 +29,12 @@ app.get('/', (req,res) => {
     res.send("Hello ");
 });
 
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
 
-app.listen(8800, () => {
+const PORT = process.env.PORT || 8800;
+
+app.listen(PORT, () => {
     connect();
     console.log('app listening on port 8800');
 });
