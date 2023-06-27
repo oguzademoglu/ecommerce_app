@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/users.js';
 import authRouter from './routes/auth.js';
+import categoryRouter from './routes/categories.js';
+import subCategoryRouter from './routes/subCategories.js';
 
 dotenv.config();
 
@@ -31,6 +33,8 @@ app.get('/', (req,res) => {
 
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/categories', categoryRouter);
+app.use('/api/subcategories', subCategoryRouter);
 
 const PORT = process.env.PORT || 8800;
 
